@@ -6,26 +6,26 @@
 #    By: gferreir <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/24 08:44:46 by gferreir          #+#    #+#              #
-#    Updated: 2018/09/05 14:29:03 by gferreir         ###   ########.fr        #
+#    Updated: 2018/09/25 10:54:49 by gferreir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftls.a
+NAME = ft_ls
 
-SRC =
+SRC = main.c 
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -I./libft -L libft -lft
 
 %.o:	%.c
 	gcc $(CFLAGS) -c -o $@ $<
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAGS) -c $(SRC)
-	ar -rc $(NAME) $(OBJ)
+$(NAME): $(OBJ)
+	make -C libft
+	gcc -o $(NAME) $(CFLAGS) $(OBJ)
 
 clean:
 	rm -f $(OBJ)
